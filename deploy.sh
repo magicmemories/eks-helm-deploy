@@ -7,9 +7,9 @@ aws eks \
     --role-arn=${CLUSTER_ROLE_ARN}
 
 # Helm Dependency Update
-helm dependency update ${DEPLOY_CHART_PATH:-helm/}
-helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD}
+# helm dependency update ${DEPLOY_CHART_PATH:-helm/}
 helm repo update
+helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD}
 
 # Helm Deployment
 UPGRADE_COMMAND="helm upgrade --wait --atomic --install --timeout ${TIMEOUT}"
@@ -23,6 +23,7 @@ fi
 if [ -n "$DEPLOY_VALUES" ]; then
     UPGRADE_COMMAND="${UPGRADE_COMMAND} --set ${DEPLOY_VALUES}"
 fi
-UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH:-helm/}"
+# UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH:-helm/}"
+UPGRADE_COMMAND="${UPGRADE_COMMAND} ${DEPLOY_NAME} ${DEPLOY_CHART_PATH}"
 echo "Executing: ${UPGRADE_COMMAND}"
 ${UPGRADE_COMMAND}
