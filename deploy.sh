@@ -12,7 +12,7 @@ helm repo update
 helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD}
 
 # Helm Deployment
-UPGRADE_COMMAND="helm upgrade --wait --atomic --install --timeout ${TIMEOUT}"
+UPGRADE_COMMAND="helm upgrade --atomic --install --timeout ${TIMEOUT}"
 for config_file in ${DEPLOY_CONFIG_FILES//,/ }
 do
     UPGRADE_COMMAND="${UPGRADE_COMMAND} -f ${config_file}"
