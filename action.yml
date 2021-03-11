@@ -41,6 +41,16 @@ inputs:
         description: 'Timeout for the job.'
         required: true
         default: 5m0s
+    repo-username:
+        description: 'helm repo username'
+        required: false
+    repo-password:
+        description: 'helm repo password'
+        required: false
+    repo:
+        description: 'helm repo'
+        required: false
+
 runs:
     using: 'docker'
     image: 'docker://peymanmo/eks-helm-deploy:v2'
@@ -55,4 +65,7 @@ runs:
         DEPLOY_VALUES: ${{ inputs.values }}
         DEPLOY_NAME: ${{ inputs.name }}
         DEPLOY_CHART_PATH: ${{ inputs.chart-path }}
+        REPO_USERNAME: ${{ inputs.repo-username }}
+        REPO_PASSWORD: ${{ inputs.repo-password }}
+        REPO: ${{ inputs.repo }}
         TIMEOUT: ${{ inputs.timeout }}

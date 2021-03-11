@@ -8,6 +8,8 @@ aws eks \
 
 # Helm Dependency Update
 helm dependency update ${DEPLOY_CHART_PATH:-helm/}
+helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD}
+helm repo update
 
 # Helm Deployment
 UPGRADE_COMMAND="helm upgrade --wait --atomic --install --timeout ${TIMEOUT}"
