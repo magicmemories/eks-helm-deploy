@@ -14,7 +14,7 @@ Whether the upgrade should wait for all resources to be Ready before completing.
 
 ### `debug`
 
-Whether to enable debug logging.
+Whether to enable debug logging. Must be either `'true'` or `'false'`, defaults to `'false'`.
 
 ### `extra-args`
 
