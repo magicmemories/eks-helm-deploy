@@ -10,7 +10,7 @@ If set, upgrade process rolls back changes made in case of failed upgrade. Must 
 
 ### `wait`
 
-Whether the upgrade should wait for all resources to be Ready before completing.
+Whether the upgrade should wait for all resources to be Ready before completing. Must be either `'true'` or `'false'`, defaults to `'true'`.
 
 ### `debug`
 
