@@ -20,9 +20,6 @@ Whether to enable debug logging. Must be either `'true'` or `'false'`, defaults 
 
 Any extra command line arguments to pass to Helm.
 
-### `aws-secret-access-key`
-
-AWS secret access key part of the aws credentials. This is used to login to EKS.
 
 ### `aws-secret-access-key`
 
