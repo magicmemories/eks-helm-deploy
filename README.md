@@ -6,7 +6,7 @@ This action uses aws cli to login to EKS and deploy a helm chart.
 
 ### `atomic`
 
-If set, upgrade process rolls back changes made in case of failed upgrade.
+If set, upgrade process rolls back changes made in case of failed upgrade. Must be either `'true'` or `'false'`, defaults to `'true'`.
 
 ### `wait`
 
