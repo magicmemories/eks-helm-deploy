@@ -4,6 +4,23 @@ This action uses aws cli to login to EKS and deploy a helm chart.
 
 ## Inputs
 
+### `atomic`
+
+If set, upgrade process rolls back changes made in case of failed upgrade. Must be either `'true'` or `'false'`, defaults to `'true'`.
+
+### `wait`
+
+Whether the upgrade should wait for all resources to be Ready before completing. Must be either `'true'` or `'false'`, defaults to `'true'`.
+
+### `debug`
+
+Whether to enable debug logging. Must be either `'true'` or `'false'`, defaults to `'false'`.
+
+### `extra-args`
+
+Any extra command line arguments to pass to Helm.
+
+
 ### `aws-secret-access-key`
 
 AWS secret access key part of the aws credentials. This is used to login to EKS.
@@ -72,6 +89,8 @@ Helm repo
   # uses: magicmemories/eks-helm-deploy@485fd8cfb4ad4f7f20c75a5327aa740cf5331c34
   uses: magicmemories/eks-helm-deploy@0.0.5
   with:
+    # If set, upgrade process rolls back changes made in case of failed upgrade.
+    atomic: # optional
     # AWS credentials used to login to eks.
     aws-secret-access-key: 
     # AWS credentials used to login to eks.
@@ -82,6 +101,8 @@ Helm repo
     cluster-name: 
     # EKS cluster admin role arn.
     cluster-role-arn: # optional
+    # whether to enable debug logging
+    debug: #optional
     # Comma separates list of helm values files.
     config-files: # optional
     # Kubernetes namespace to use.
@@ -96,10 +117,14 @@ Helm repo
     version: # optional
     # Timeout for the job.
     timeout: # default is 5m0s
+    # Any extra command line arguments to pass to Helm
+    extra-args: # optional
     # helm repo username
     repo-username: # optional
     # helm repo password
     repo-password: # optional
     # helm repo
     repo: # optional
+    # Whether the upgrade should wait for all resources to be Ready before completing
+    wait: # optional
 ```

@@ -53,24 +53,43 @@ inputs:
     repo:
         description: 'helm repo'
         required: false
+    atomic:
+        description: 'Whether the upgrade should be atomic'
+        required: false
+        default: true
+    wait:
+        description: 'Whether the upgrade should wait for all resources to be Ready before completing'
+        required: false
+        default: 'true'
+    debug:
+        description: 'Whether to enable debug logging'
+        required: false
+        default: 'false'
+    extra-args:
+        description: 'Any extra command line arguments to pass to Helm'
+        required: false
 
 runs:
     using: 'docker'
     # image: 'docker://peymanmo/eks-helm-deploy:v2'
     image: Dockerfile
     env:
+        ATOMIC: ${{ inputs.atomic }}
         AWS_REGION: ${{ inputs.aws-region }}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
         AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
         CLUSTER_NAME: ${{ inputs.cluster-name }}
         CLUSTER_ROLE_ARN: ${{ inputs.cluster-role-arn }}
+        DEBUG: ${{ inputs.debug }}
         DEPLOY_CONFIG_FILES: ${{ inputs.config-files }}
         DEPLOY_NAMESPACE: ${{ inputs.namespace }}
         DEPLOY_VALUES: ${{ inputs.values }}
         DEPLOY_NAME: ${{ inputs.name }}
         DEPLOY_CHART_PATH: ${{ inputs.chart-path }}
+        EXTRA_ARGS: ${{ inputs.extra-args }}
         REPO_USERNAME: ${{ inputs.repo-username }}
         REPO_PASSWORD: ${{ inputs.repo-password }}
         REPO: ${{ inputs.repo }}
         TIMEOUT: ${{ inputs.timeout }}
         VERSION: ${{ inputs.version }}
+        WAIT: ${{ inputs.wait }}
