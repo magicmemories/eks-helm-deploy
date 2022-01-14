@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 # Login to Kubernetes Cluster.
 aws eks \
     --region ${AWS_REGION} \
