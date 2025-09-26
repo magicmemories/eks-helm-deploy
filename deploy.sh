@@ -8,8 +8,13 @@ aws eks \
 
 # Helm Dependency Update
 # helm dependency update ${DEPLOY_CHART_PATH:-helm/}
-helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD} --pass-credentials
-helm repo update
+if [ -n "$REPO" ]; then
+    echo "Adding helm repository: $REPO"
+    helm repo add magic ${REPO} --username ${REPO_USERNAME} --password ${REPO_PASSWORD} --pass-credentials
+    helm repo update
+else
+    echo "No helm repository specified, using local chart only"
+fi
 
 UPGRADE_COMMAND="helm upgrade --install"
 
